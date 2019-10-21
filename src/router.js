@@ -10,7 +10,7 @@ export default new Router({
       path: '/',
       name: 'home',
       meta: {
-        name: '一级 2'
+        name: '菜单管理'
       },
       component: Home
     },

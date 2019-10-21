@@ -102,7 +102,7 @@ export default {
   created () {
     // debugger
     let parent = this.$parent
-    this.isActive = this.$route.meta.name === this.data.name
+    this.isActive = this.$route.meta.name === this.data.title
     while (parent && parent.$options.componentName !== 'TreeList') {
       if (parent.$options.componentName === 'TreeItem') {
         if (this.isActive) {
@@ -129,8 +129,9 @@ export default {
 .tree-name{
   display: flex;
   color: #323233;
-  font-size: 30px;
-  height: 70px;
+  font-size: 16px;
+  height: 40px;
+  font-weight: bold;
   align-items: center;
   padding-right: 20px;
   &.is-hover{
