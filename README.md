@@ -17,7 +17,7 @@ yarn run build:prod
 
 ### Run your tests
 ```
-// yarn run test
+// yarn run test //
 ```
 
 ### Lints and fixes files
