@@ -12,7 +12,7 @@ yarn run serve
 
 ### Compiles and minifies for production
 ```
-yarn run build
+yarn run build:prod
 ```
 
 ### Run your tests
