@@ -1,5 +1,13 @@
 <template>
   <div>
+    <van-nav-bar
+    title="标题"
+    left-text="返回"
+    right-text="刷新"
+    left-arrow
+    @click-left="$router.go(-1)"
+    @click-right="refresh()"
+    />
     <img class="user-poster" src="https://img.yzcdn.cn/public_files/2017/10/23/8690bb321356070e0b8c4404d087f8fd.png">
     <van-row class="user-links">
       <van-col span="6">
@@ -25,7 +33,7 @@
     </van-cell-group>
 
     <van-cell-group>
-      <van-cell icon="points" title="我的积分" is-link />
+      <van-cell @click="$router.push('/dashboard')" icon="points" title="返回首页" is-link />
       <van-cell icon="gold-coin-o" title="我的优惠券" is-link />
       <van-cell icon="gift-o" title="我收到的礼物" is-link />
     </van-cell-group>
@@ -33,14 +41,16 @@
 </template>
 
 <script>
-import { Row, Col, Icon, Cell, CellGroup } from 'vant'
 export default {
-  components: {
-    [Row.name]: Row,
-    [Col.name]: Col,
-    [Icon.name]: Icon,
-    [Cell.name]: Cell,
-    [CellGroup.name]: CellGroup
+  methods: {
+    refresh () {
+      const { fullPath } = this.$route
+      this.$nextTick(() => {
+        this.$router.replace({
+          path: '/redirect' + fullPath
+        })
+      })
+    }
   }
 }
 </script>
