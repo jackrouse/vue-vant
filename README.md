@@ -12,6 +12,7 @@ yarn run serve
 
 ### Compiles and minifies for production
 ```
+yarn run build:stage
 yarn run build:prod
 ```
 
