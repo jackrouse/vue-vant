@@ -5,7 +5,7 @@ const path = require('path')
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
-let glob = require('glob')
+const glob = require('glob')
 // 配置pages多页面获取当前文件夹下的html和js
 function getEntry (globPath) {
   let entries = {}
@@ -17,6 +17,7 @@ function getEntry (globPath) {
     tmp = entry.split('/').splice(-3)
     console.log(tmp)
     pathname = basename // 正确输出js和html的路径
+    const templateThunks = ['runtime', 'chunk-libs', 'chunk-vant', 'chunk-commons', basename]
 
     // console.log(pathname)
     entries[pathname] = {
@@ -24,7 +25,19 @@ function getEntry (globPath) {
       template: 'src/' + tmp[0] + '/' + tmp[1] + '/' + tmp[2],
       title: tmp[2],
       filename: tmp[2],
-      chunks: ['chunk-libs', 'chunk-vant', 'chunk-commons', basename]
+      chunks: templateThunks,
+      // libs: [],
+      // styles: [],
+      chunksSortMode: function (chunk1, chunk2) {
+        return templateThunks.indexOf(chunk1.names[0]) - templateThunks.indexOf(chunk2.names[0])
+      },
+      minify: {
+      // removeComments: true,
+      // collapseWhitespace: true,
+      // removeAttributeQuotes: true
+      // more options:
+      // https://github.com/kangax/html-minifier#options-quick-reference
+      }
     }
   })
   return entries
@@ -136,6 +149,7 @@ module.exports = {
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
             // `runtime` must same as runtimeChunk name. default is `runtime`
+              defaultAttribute: 'defer',
               inline: /runtime\..*\.js$/
             }])
             .end()
@@ -163,7 +177,9 @@ module.exports = {
                 }
               }
             })
-          config.optimization.runtimeChunk('single')
+          config.optimization.runtimeChunk({
+            name: 'runtime'
+          })
         }
       )
   }
