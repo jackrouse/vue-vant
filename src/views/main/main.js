@@ -2,12 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
-import './registerServiceWorker'
 import Vant from 'vant'
 import 'vant/lib/index.css'
-import './assets/styles/mixins/mixins.scss'
+import '@/assets/styles/mixins/mixins.scss'
 import vueFeedback from 'vue-feedback'
-import './icons' // icon
+import '@/icons' // icon
 import './permission' // permission control
 import './importTest'
 /**
@@ -18,8 +17,9 @@ import './importTest'
  * Currently MockJs will be used in the production environment,
  * please remove it before going online! ! !
  */
-import { mockXHR } from '../mock'
+// import { mockXHR } from '../../../mock'
 if (process.env.NODE_ENV === 'development') {
+  const mockXHR = require('../../../mock').mockXHR
   mockXHR()
 }
 

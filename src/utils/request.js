@@ -4,7 +4,7 @@ import axios from 'axios'
 //   MessageBox
 // } from 'element-ui'
 import { Dialog, Notify } from 'vant'
-import store from '../store'
+import store from '../views/main/store'
 import {
   getToken
 } from '@/utils/auth'

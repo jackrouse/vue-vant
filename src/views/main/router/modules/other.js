@@ -1,6 +1,6 @@
 /** When your routing table is too long, you can split it into small modules **/
 
-import Layout from '@/views/Layout'
+import Layout from '@/views/main/Layout'
 
 const componentsRouter = {
   path: '/other',
@@ -14,13 +14,13 @@ const componentsRouter = {
   children: [
     {
       path: 'othera',
-      component: () => import('@/views/Other/othera'),
+      component: () => import('@/views/main/Other/othera'),
       name: 'othera',
       meta: { title: 'othera' }
     },
     {
       path: 'otherb',
-      component: () => import('@/views/Other/otherb'),
+      component: () => import('@/views/main/Other/otherb'),
       name: 'otherb',
       meta: { title: 'otherb' }
     }

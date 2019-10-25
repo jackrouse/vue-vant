@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Layout from '@/views/Layout/index.vue'
-// import Dashboard from '@/views/Dashboard.vue'
+import Layout from '@/views/main/Layout/index.vue'
+// import Dashboard from '@/views/main/Dashboard.vue'
 import other from './modules/other'
 Vue.use(Router)
 
@@ -34,18 +34,18 @@ export const constantRoutes = [
     children: [
       {
         path: '/redirect/:path*',
-        component: () => import('@/views/redirect/index')
+        component: () => import('@/views/main/redirect')
       }
     ]
   },
   {
     path: '/login',
-    component: () => import('@/views/login/index'),
+    component: () => import('@/views/main/login'),
     hidden: true
   },
   // {
   //   path: '/auth-redirect',
-  //   component: () => import('@/views/login/auth-redirect'),
+  //   component: () => import('@/views/main/login/auth-redirect'),
   //   hidden: true
   // },
   {
@@ -60,7 +60,7 @@ export const constantRoutes = [
       {
         path: 'dashboard',
         name: 'dashboard',
-        component: () => import(/* webpackChunkName: "Dashboard" */ '@/views/Dashboard/index'),
+        component: () => import(/* webpackChunkName: "Dashboard" */ '@/views/main/Dashboard'),
         meta: { title: '首页' }
       },
       {
@@ -69,19 +69,19 @@ export const constantRoutes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '@/views/About/index'),
+        component: () => import(/* webpackChunkName: "about" */ '@/views/main/About'),
         meta: { title: '关于' }
       }
     ]
   },
   {
     path: '/404',
-    component: () => import('@/views/error-page/404'),
+    component: () => import('@/views/main/error-page/404'),
     hidden: true
   },
   {
     path: '/401',
-    component: () => import('@/views/error-page/401'),
+    component: () => import('@/views/main/error-page/401'),
     hidden: true
   },
   other
@@ -92,7 +92,7 @@ export const asyncRoutes = [
     path: '/ploptest',
     component: () => {
       console.log(123)
-      return import(/* webpackChunkName: "Ploptest" */'@/views/Ploptest/index')
+      return import(/* webpackChunkName: "Ploptest" */'@/views/main/Ploptest')
     }
   },
   // 404 page must be placed at the end !!!
