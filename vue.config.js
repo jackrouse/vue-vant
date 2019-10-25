@@ -17,7 +17,7 @@ function getEntry (globPath) {
     tmp = entry.split('/').splice(-3)
     console.log(tmp)
     pathname = basename // 正确输出js和html的路径
-    const templateThunks = ['runtime', 'chunk-libs', 'chunk-vant', 'chunk-commons', basename]
+    const templateThunks = ['chunk-runtime', 'chunk-libs', 'chunk-vant', 'chunk-commons', basename]
 
     // console.log(pathname)
     entries[pathname] = {
@@ -163,7 +163,7 @@ module.exports = {
                   priority: 10,
                   chunks: 'initial' // only package third parties that are initially dependent
                 },
-                elementUI: {
+                vant: {
                   name: 'chunk-vant', // split elementUI into a single package
                   priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
                   test: /[\\/]node_modules[\\/]_?vant(.*)/ // in order to adapt to cnpm
@@ -178,7 +178,7 @@ module.exports = {
               }
             })
           config.optimization.runtimeChunk({
-            name: 'runtime'
+            name: 'chunk-runtime'
           })
         }
       )
