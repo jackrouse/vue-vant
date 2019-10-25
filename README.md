@@ -27,5 +27,5 @@ yarn run lint
 ```
 
 ### Customize configuration
-哈哈
+哈哈 test
 See [Configuration Reference](https://cli.vuejs.org/config/).
