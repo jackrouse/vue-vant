@@ -1,12 +1,10 @@
 <template>
-  <div>
-    Ploptest
-  </div>
+  <div>ImportTest</div>
 </template>
 
 <script>
 export default {
-  name: 'Ploptest',
+  name: 'ImportTest',
   props: {},
   data () {
     return {}
