@@ -1,19 +1,313 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>myvue</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but myvue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app">
-      <div>sersarsear1222111</div>
-    </div>
-    <!-- built files will be auto injected -->
-  </body>
+<html  lang="zh-cmn-Hans" style="background:#ffffff;">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="x-dns-prefetch-control" content="on">
+        <link rel="dns-prefetch" href="//upload.fdc.com.cn">
+        <link rel="dns-prefetch" href="//static.fdc.com.cn">
+        <link rel="dns-prefetch" href="//gw.fdc.com.cn">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="telephone=no,email=no" name="format-detection">
+        <link
+            href="//static.fdc.com.cn/common/images/logo-160x160.png"
+            rel="shortcut icon"
+            type="image/x-icon">
+        <link href="//static.fdc.com.cn/common/images/logo-160x160.png" rel="apple-touch-icon-precomposed">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1,user-scalable=no">
+        <title>首页</title>
+        <meta name="description" content="$!{description}">
+        <meta name="keywords" content="$!{keywords}">
+    </head>
+
+    <body>
+      <div id="app" >
+
+        <div class="main-top__wrap">
+
+          <header class="header__wrap" :class="isScroll && 'is-scroll'">
+            <div class="header__search-wrap">
+              <div class="header__search-city">武汉武汉武汉武汉武汉</div>
+              <a href="#" class="header__search-icon"></a>
+              <a href="#" class="header__search-holder">小区/楼盘/商圈/地名/资讯</a>
+            </div>
+            <!-- <a href="#" class="header__find-house">
+              <div class="header__find-house-icon"></div>
+              <div class="header__find-house-text">地图找房</div>
+            </a> -->
+          </header>
+          <!-- banner轮播图 -->
+          <div class="banner__wrap">
+            <swipe class="my-swipe">
+              <swipe-item class="slide-item">
+                <a class="banner__link" href="">
+                  <img class="banner__img" src="http://upload.fdc.com.cn/2018/1220/1545276767720.jpg">
+                </a>
+              </swipe-item>
+              <swipe-item class="slide-item">
+                  <a class="banner__link" href="">
+                  <img class="banner__img" src="http://upload.fdc.com.cn/2018/1220/1545276767720.jpg">
+                  </a>
+              </swipe-item>
+            </swipe>
+          </div>
+
+        </div>
+
+        <!-- 大导航 -->
+        <div class="main-nav__wrap">
+          <a class="main-nav__item">
+            <h3 class="main-nav__name">新房</h3>
+            <img class="main-nav__img" src="http://upload.fdc.com.cn/2018/1220/1545276767720.jpg" alt="">
+          </a>
+          <a class="main-nav__item">
+            <h3 class="main-nav__name">新房</h3>
+            <img class="main-nav__img" src="http://upload.fdc.com.cn/2018/1220/1545276767720.jpg" alt="">
+          </a>
+          <a class="main-nav__item">
+            <h3 class="main-nav__name">新房</h3>
+            <img class="main-nav__img" src="http://upload.fdc.com.cn/2018/1220/1545276767720.jpg" alt="">
+          </a>
+          <a class="main-nav__item">
+            <h3 class="main-nav__name">新房</h3>
+            <img class="main-nav__img" src="http://upload.fdc.com.cn/2018/1220/1545276767720.jpg" alt="">
+          </a>
+        </div>
+
+        <!-- 二级导航 多余五个第五个显示更多 点击跳转 -->
+        <div class="sub-nav__wrap">
+          <a class="sub-nav__item" href="">
+            <img class="sub-nav__icon" src="http://upload.fdc.com.cn/2018/1220/1545276767720.jpg" alt="">
+            <div class="sub-nav__name">我要买房</div>
+          </a>
+          <a class="sub-nav__item" href="">
+            <img class="sub-nav__icon" src="http://upload.fdc.com.cn/2018/1220/1545276767720.jpg" alt="">
+            <div class="sub-nav__name">我要买房</div>
+          </a>
+          <a class="sub-nav__item" href="">
+            <img class="sub-nav__icon" src="http://upload.fdc.com.cn/2018/1220/1545276767720.jpg" alt="">
+            <div class="sub-nav__name">我要买房</div>
+          </a>
+          <a class="sub-nav__item" href="">
+            <img class="sub-nav__icon" src="http://upload.fdc.com.cn/2018/1220/1545276767720.jpg" alt="">
+            <div class="sub-nav__name">我要买房</div>
+          </a>
+          <a class="sub-nav__item" href="">
+            <img class="sub-nav__icon" src="http://upload.fdc.com.cn/2018/1220/1545276767720.jpg" alt="">
+            <div class="sub-nav__name">更多</div>
+          </a>
+        </div>
+
+        <!-- 价格 -->
+        <div class="price-condition__wrap">
+          <div class="main-title__wrap">
+            <h2 class="main-title__name">武汉市场行情</h2>
+            <a class="main-title__option">查看全部<i class="main-title__more-icon"></i></a>
+          </div>
+          <div class="price-condition__list">
+            <a class="price-condition__item" href="">
+              <div class="price-condition__row-1">
+                <span class="price-condition__num">123123</span><span class="price-condition__unit">元/平</span>
+              </div>
+              <div class="price-condition__row-2">
+                <span>二手房</span>
+                <span class="price-condition__up-icon"></span>
+                <span>1.37%</span>
+              </div>
+            </a>
+            <a class="price-condition__item" href="">
+              <div class="price-condition__row-1">
+                <span class="price-condition__num">123123</span><span class="price-condition__unit">元/平</span>
+              </div>
+              <div class="price-condition__row-2">
+                <span>新房</span>
+                <span class="price-condition__down-icon"></span>
+                <span>1.37%</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 三个图 -->
+        <div class="content-find__wrap">
+          <div class="content-find__imgleft">
+            <a href="javascript:;"><img src="http://img3.fdc.com.cn/Newhouse/xg/2015/05/07/09110417.jpg" alt=""></a>
+          </div>
+          <div class="content-find__imgright">
+            <a href="javascript:;"><img src="http://img3.fdc.com.cn/Newhouse/xg/2015/05/07/09110417.jpg" alt=""></a>
+            <a href="javascript:;"><img src="http://img3.fdc.com.cn/Newhouse/xg/2015/05/07/09110417.jpg" alt=""></a><!-- 一张图时 -->
+          </div>
+        </div>
+
+        <!-- 头条推荐 -->
+        <div class="new-recomment__wrap">
+          <div class="main-title__wrap">
+            <h2 class="main-title__name">头条推荐</h2>
+            <a href="#" class="main-title__option">查看全部<i class="main-title__more-icon"></i></a>
+          </div>
+          <div class="new-recomment__list">
+
+            <!-- 有图文章 文章 多图只显示一个图片-->
+            <a class="info-card" href="123">
+              <div class="info-card__container">
+                <!-- left -->
+                <div class="info-card__left">
+                  <p class="info-card__header">
+                    <span class="info-card__title">titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle</span>
+                  </p>
+
+                  <div class="info-card__footer">
+                    <div class="info-card__flag">栏目名</div>
+                    <div class="info-card__count">122人阅读</div>
+                    <div style="flex:1;"></div>
+                    <div class="info-card__date">2017-09-21</div>
+                  </div>
+                </div>
+                <!-- right -->
+                <div class="info-card__right">
+                  <div class="info-card__thumbs">
+                    <img class="info-card__rightImg" src="http://img3.fdc.com.cn/Newhouse/xg/2015/05/07/09110417.jpg?x-oss-process=image/resize,m_fill,w_230,h_170,limit_0">
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <!-- 问答 -->
+            <a class="info-card" href="123">
+              <div class="info-card__container is-qa">
+                <!-- left -->
+                <div class="info-card__left">
+                  <p class="info-card__header">
+                    <span class="info-card__title">titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle</span>
+                  </p>
+                  <div class="info-card__answer">
+                    <!-- 有名字显示名字 没有名字显示 亿房网友 -->
+                    <span class="info-card__answer-name">亿房网友：</span>
+                    回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答回答
+                  </div>
+
+                  <div class="info-card__footer">
+                    <div class="info-card__flag">栏目名</div>
+                    <div class="info-card__count">122人阅读</div>
+                    <div style="flex:1;"></div>
+                    <div class="info-card__date">2017-09-21</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <!-- 视频  和文章一样  info-card__container 多了个 is-video-->
+            <a class="info-card" href="123">
+                <div class="info-card__container is-video">
+                  <!-- left -->
+                  <div class="info-card__left">
+                    <p class="info-card__header">
+                      <span class="info-card__title">titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle</span>
+                    </p>
+
+                    <div class="info-card__footer">
+                      <div class="info-card__flag">栏目名</div>
+                      <div class="info-card__count">122人阅读</div>
+                      <div style="flex:1;"></div>
+                      <div class="info-card__date">2017-09-21</div>
+                    </div>
+                  </div>
+                  <!-- right -->
+                  <div class="info-card__right">
+                    <div class="info-card__thumbs">
+                      <img class="info-card__rightImg" src="http://img3.fdc.com.cn/Newhouse/xg/2015/05/07/09110417.jpg?x-oss-process=image/resize,m_fill,w_230,h_170,limit_0">
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+
+
+            <!-- 无图文章 没有right的内容-->
+            <a class="info-card" href="123">
+              <div class="info-card__container">
+                <!-- left -->
+                <div class="info-card__left">
+                  <p class="info-card__header">
+                    <span class="info-card__title">titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle</span>
+                  </p>
+
+                  <div class="info-card__footer">
+                    <div class="info-card__flag">栏目名</div>
+                    <div class="info-card__count">122人阅读</div>
+                    <div style="flex:1;"></div>
+                    <div class="info-card__date">2017-09-21</div>
+                  </div>
+                </div>
+                <!-- right -->
+                <!-- <div class="info-card__right">
+                  <div class="info-card__thumbs">
+                    <img class="info-card__rightImg" src="http://img3.fdc.com.cn/Newhouse/xg/2015/05/07/09110417.jpg?x-oss-process=image/resize,m_fill,w_230,h_170,limit_0">
+                  </div>
+                </div> -->
+              </div>
+            </a>
+
+
+
+            <!-- 直播 -->
+            <a class="info-card" href="123">
+              <div class="info-card__container is-live">
+                  <p class="info-card__header">
+                    <span class="info-card__title">titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle</span>
+                  </p>
+
+                  <div class="info-card__largeCover">
+                    <!-- is-onlineShow为 即将开始 和 正在直播   is-onlineEnd为 精彩回顾 -->
+                    <span class="info-card__largeCover-label is-onlineShow">正在直播</span>
+                    <img class="img-responsive" src="http://img3.fdc.com.cn/Newhouse/xg/2015/05/07/09110417.jpg?x-oss-process=image/resize,m_fill,w_710,h_320,limit_0">
+                  </div>
+
+                  <div class="info-card__footer">
+                    <div class="info-card__flag">栏目名</div>
+                    <div class="info-card__count">122人观看</div>
+                    <div style="flex:1;"></div>
+                    <div class="info-card__date">2017-09-21</div>
+                  </div>
+              </div>
+            </a>
+
+            <!-- 广告 -->
+            <a class="info-card" href="">
+              <div class="info-card__container is-ad">
+                  <img class="img-responsive" src="http://img3.fdc.com.cn/Newhouse/xg/2015/05/07/09110417.jpg?x-oss-process=image/resize,m_fill,w_750,h_160,limit_0">
+              </div>
+            </a>
+
+            <!-- 话题 -->
+            <div class="info-card">
+              <div class="info-card__container">
+                <div class="info-card__huati-list">
+                  <a class="info-card__huati-item" href="">
+                    <img class="info-card__huati-img" src="http://img3.fdc.com.cn/Newhouse/xg/2015/05/07/09110417.jpg?x-oss-process=image/resize,m_fill,w_50,h_50,limit_0" alt="">
+                    <span class="info-card__huati-desc">#盘点2018热门小区盘点2018热门小区盘点2018热门小区#</span>
+                  </a>
+                  <a class="info-card__huati-item" href="">
+                    <img class="info-card__huati-img" src="http://img3.fdc.com.cn/Newhouse/xg/2015/05/07/09110417.jpg?x-oss-process=image/resize,m_fill,w_50,h_50,limit_0" alt="">
+                    <span class="info-card__huati-desc">#盘点2018热门小区门小区门小区#</span>
+                  </a>
+                  <a class="info-card__huati-item" href="">
+                    <img class="info-card__huati-img" src="http://img3.fdc.com.cn/Newhouse/xg/2015/05/07/09110417.jpg?x-oss-process=image/resize,m_fill,w_50,h_50,limit_0" alt="">
+                    <span class="info-card__huati-desc">#盘点2018热门小区#</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+        <script src="http://api.map.baidu.com/api?v=2.0&amp;ak=SvVTMGOPXvHry8MXfpjiUGwR"></script>
+        <!-- 生成依赖库 -->
+    </body>
+
 </html>
