@@ -121,7 +121,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/mixins/mixins.scss';
+// @import '@/assets/styles/mixins/mixins.scss';
 
 .tree-item{
   text-align: left;

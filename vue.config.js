@@ -1,7 +1,8 @@
 'use strict'
 const path = require('path')
 // const defaultSettings = require('./src/settings.js')
-
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+// const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin')
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
@@ -56,6 +57,23 @@ module.exports = {
     resolve: {
       alias: {
         '@': resolve('src')
+      }
+    }
+  },
+  css: {
+    loaderOptions: {
+      // 更改vant-ui的主题 需更改babel.config.js的配置 style: name => `${name}/style/less`
+      // less: {
+      //   modifyVars: {
+      //     // 直接覆盖变量
+      //     // 'text-color': '#111',
+      //     // 'border-color': '#eeefff',
+      //     // 或者可以通过 less 文件覆盖（文件路径为绝对路径）
+      //     'hack': `true; @import "${resolve('src/assets/styles/_theme-vant.less')}";`
+      //   }
+      // },
+      sass: {
+        data: '@import "@/assets/styles/_mixin.scss";@import "@/assets/styles/_variables.scss";' // 全局引入
       }
     }
   },
@@ -133,6 +151,31 @@ module.exports = {
               }
             })
           config.optimization.runtimeChunk('single')
+          // gzip需要nginx进行配合
+          config
+            .plugin('compression')
+            .use(CompressionWebpackPlugin)
+            .tap(() => [
+              {
+                test: /\.js$|\.html$|\.css/, // 匹配文件名
+                threshold: 10240, // 超过10k进行压缩
+                deleteOriginalAssets: false // 是否删除源文件
+              }
+            ])
+          // config.optimization.minimizer([
+          //   new UglifyjsWebpackPlugin({
+          //     // 生产环境推荐关闭 sourcemap 防止源码泄漏
+          //     // 服务端通过前端发送的行列，根据 sourcemap 转为源文件位置
+          //     // sourceMap: true,
+          //     uglifyOptions: {
+          //       warnings: false,
+          //       compress: {
+          //         drop_console: true,
+          //         drop_debugger: true
+          //       }
+          //     }
+          //   })
+          // ])
         }
       )
   }

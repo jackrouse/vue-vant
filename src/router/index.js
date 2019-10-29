@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '@/store'
 import Layout from '@/views/Layout/index.vue'
 // import Dashboard from '@/views/Dashboard.vue'
 import other from './modules/other'
@@ -29,6 +30,7 @@ Vue.use(Router)
 export const constantRoutes = [
   {
     path: '/redirect',
+    name: 'redirect',
     component: Layout,
     hidden: true,
     children: [
@@ -40,6 +42,7 @@ export const constantRoutes = [
   },
   {
     path: '/login',
+    name: 'login',
     component: () => import('@/views/login/index'),
     hidden: true
   },
@@ -106,6 +109,35 @@ const createRouter = () => new Router({
 })
 
 const router = createRouter()
+
+// 路由过渡动效
+const history = window.sessionStorage
+history.clear()
+let historyCount = history.getItem('count') * 1 || 0
+history.setItem('/', 0)
+
+router.beforeEach((to, from, next) => {
+  if (to.params.direction) {
+    store.commit('app/updateDirection', to.params.direction)
+  } else {
+    const toIndex = history.getItem(to.path)
+    const fromIndex = history.getItem(from.path)
+    // 判断并记录跳转页面是否访问过，以此判断跳转过渡方式
+    if (toIndex) {
+      if (!fromIndex || parseInt(toIndex, 10) > parseInt(fromIndex, 10) || (toIndex === '0' && fromIndex === '0')) {
+        store.commit('app/updateDirection', 'forward')
+      } else {
+        store.commit('app/updateDirection', 'back')
+      }
+    } else {
+      ++historyCount
+      history.setItem('count', historyCount)
+      to.path !== '/' && history.setItem(to.path, historyCount)
+      store.commit('app/updateDirection', 'forward')
+    }
+  }
+  next()
+})
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter () {

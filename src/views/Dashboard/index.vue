@@ -9,6 +9,7 @@
     <div>
       <router-link to="/about">234</router-link>
       <svg-icon icon-class="password" class-name="bing"/>
+      <div class="ellipsis cccccccc">sdfsadddddddddddddddddddsdfsadddddddddddddddddddsdfsadddddddddddddddddddsdfsaddddddddddddddddddd</div>
     </div>
   </div>
 </template>
@@ -45,6 +46,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ellipsis{
+  width: 100px;
+  @include ellipsis()
+}
 .menu-container {
   padding-top: 20px;
 }
