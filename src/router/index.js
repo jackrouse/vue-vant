@@ -93,10 +93,8 @@ export const constantRoutes = [
 export const asyncRoutes = [
   {
     path: '/ploptest',
-    component: () => {
-      console.log(123)
-      return import(/* webpackChunkName: "Ploptest" */'@/views/Ploptest/index')
-    }
+    component: () => import(/* webpackChunkName: "Ploptest" */'@/views/Ploptest/index'),
+    hidden: true
   },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

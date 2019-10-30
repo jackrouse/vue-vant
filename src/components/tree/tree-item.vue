@@ -129,8 +129,8 @@ export default {
 .tree-name{
   display: flex;
   color: #323233;
-  font-size: 16px;
-  height: 40px;
+  font-size: 30px;
+  height: 70px;
   font-weight: bold;
   align-items: center;
   padding-right: 20px;

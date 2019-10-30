@@ -1,27 +1,255 @@
 <template>
-  <div class="dashboard">
-    <van-nav-bar title="首页" @click-left="onClickLeft">
-      <van-icon name="wap-nav" slot="left" size="2em" />
+  <div class="dashboard layout-wrap is-page">
+    <van-nav-bar
+      @click-left="onClickLeft"
+      title="首页"
+    >
+      <van-icon
+        name="wap-nav"
+        size="2em"
+        slot="left"
+      />
     </van-nav-bar>
-    <van-popup v-model="show" position="left" :style="{ height: '100%',width:'70%'}">
-      <trees class="menu-container" :data="treeData" :treeProps="propsxxx"></trees>
+    <van-popup
+      :style="{ height: '100%',width:'70%'}"
+      position="left"
+      v-model="show"
+    >
+      <trees
+        :data="treeData"
+        :treeProps="propsxxx"
+        class="menu-container"
+      ></trees>
     </van-popup>
-    <div>
-      <router-link to="/about">234</router-link>
-      <svg-icon icon-class="password" class-name="bing"/>
-      <div class="ellipsis cccccccc">sdfsadddddddddddddddddddsdfsadddddddddddddddddddsdfsadddddddddddddddddddsdfsaddddddddddddddddddd</div>
+    <div class="content-wrap">
+      <router-link to="/about">去详情</router-link>
+      <svg-icon
+        class-name="bing"
+        icon-class="password"
+      />
+
+      <svg-icon
+        style="width:100px;height:100px;"
+        icon-class="tianqi"
+      />
+      <div
+        class="ellipsis cccccccc"
+      >sdfsadddddddddddddddddddsdfsadddddddddddddddddddsdfsadddddddddddddddddddsdfsaddddddddddddddddddd</div>
+      <div class="now-value">
+        <span>当前数值{{$store.state.test.number}}</span>
+        <div>
+          <van-button
+            :loading="loading"
+            @click="add"
+            size="small"
+            type="info"
+          >异步+1</van-button>
+
+          <van-button
+            :loading="loading"
+            @click="add2"
+            size="small"
+            type="info"
+          >异步+2</van-button>
+
+          <van-button
+            @click="addOne"
+            size="small"
+            type="primary"
+          >+1</van-button>
+        </div>
+      </div>
+      <div>
+        12312312
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
+      <div>
+        aaaaaaaa
+        <br />
+      </div>
     </div>
+    <div class="footer flex is-center" v-fb="{cls:'is-hover'}">我是footer132</div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import { mapActions, mapMutations, mapState } from 'vuex' // createNamespacedHelpers
 import trees from '@/components/tree'
 import { menu } from '@/api/menu.mock.js'
 export default {
   name: 'Dashboard',
   data () {
     return {
+      value: 1,
       show: false,
       propsxxx: {
         children: 'children',
@@ -35,20 +263,42 @@ export default {
   components: {
     trees
   },
+  computed: {
+    ...mapState({
+      loading: state => state['@@loading'].effects['test/onePlusAsync']
+    })
+  },
   methods: {
     onClickLeft () {
       this.show = true
-    }
+    },
+    add () {
+      this.onePlusAsync(this.value)
+    },
+    add2 () {
+      this.onePlusAsync(2)
+    },
+    addOne () {
+      this.onePlus(1)
+    },
+    // ...mapActions('home', ['initData', 'plusPage', 'initPage']),
+    ...mapActions({
+      onePlusAsync: 'test/onePlusAsync'
+    }),
+    ...mapMutations({
+      onePlus: 'test/onePlus'
+    })
   },
   created () {
+    // alert(12334)
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.ellipsis{
+.ellipsis {
   width: 100px;
-  @include ellipsis()
+  @include ellipsis();
 }
 .menu-container {
   padding-top: 20px;
@@ -58,5 +308,12 @@ export default {
   height: 100%;
   background: red;
 }
-
+.footer {
+  height: 100px;
+  background: red;
+  &.is-hover{
+    color: blue;
+    background: yellow;
+  }
+}
 </style>

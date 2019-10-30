@@ -26,7 +26,7 @@ const getRequestIdentify = (config, isReuest = false) => {
 }
 // 创建axios实例
 const service = axios.create({
-  baseURL: process.env.BASE_API, // api的base_url
+  baseURL: process.env.VUE_APP_BASE_API, // api的base_url
   // baseURL:"http://", // api的base_url    端口号多少
   timeout: 5000 // 请求超时时间
 })

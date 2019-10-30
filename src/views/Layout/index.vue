@@ -40,25 +40,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .router-fade-enter-active, .router-fade-leave-active {
-//   transition: opacity .3s;
-// }
-// .router-fade-enter, .router-fade-leave-active {
-//   opacity: 0;
-// }
-
+.layout{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
 .router {
   width: 100%;
-  height: 100%;
-  overflow: scroll;
-  position: absolute;
-  overflow: hidden !important;
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #fff;
+  // height: 100%;
+  // overflow: scroll;
+  // position: absolute;
+  // overflow: hidden !important;
+  // overflow-y: auto !important;
+  // -webkit-overflow-scrolling: touch;
+  // top: 0;
+  // right: 0;
+  // bottom: 0;
+  // left: 0;
+  // background-color: #fff;
 }
 </style>

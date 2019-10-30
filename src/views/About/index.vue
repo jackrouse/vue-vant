@@ -67,12 +67,12 @@ export default {
   }
   &-links {
     padding: 15px 0;
-    font-size: 12px;
+    font-size: 24px;
     text-align: center;
     background-color: #fff;
     .van-icon {
       display: block;
-      font-size: 24px;
+      font-size: 36px;
     }
   }
 }

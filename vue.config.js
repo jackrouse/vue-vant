@@ -69,11 +69,11 @@ module.exports = {
       //     // 'text-color': '#111',
       //     // 'border-color': '#eeefff',
       //     // 或者可以通过 less 文件覆盖（文件路径为绝对路径）
-      //     'hack': `true; @import "${resolve('src/assets/styles/_theme-vant.less')}";`
+      //     'hack': `true; @import "${resolve('src/styles/_theme-vant.less')}";`
       //   }
       // },
       sass: {
-        data: '@import "@/assets/styles/_mixin.scss";@import "@/assets/styles/_variables.scss";' // 全局引入
+        data: '@import "@/styles/_mixin.scss";@import "@/styles/_variables.scss";' // 全局引入
       }
     }
   },
