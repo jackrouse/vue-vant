@@ -36,14 +36,14 @@ export const constantRoutes = [
     children: [
       {
         path: '/redirect/:path*',
-        component: () => import('@/views/redirect/index')
+        component: () => import(/* webpackChunkName: "redirect" */'@/views/redirect/index')
       }
     ]
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/login/index'),
+    component: () => import(/* webpackChunkName: "login" */'@/views/login/index'),
     hidden: true
   },
   // {
@@ -72,19 +72,19 @@ export const constantRoutes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '@/views/About/index'),
+        component: () => import(/* webpackChunkName: "about" */'@/views/About/index'),
         meta: { title: '关于' }
       }
     ]
   },
   {
     path: '/404',
-    component: () => import('@/views/error-page/404'),
+    component: () => import(/* webpackChunkName: "404" */'@/views/error-page/404'),
     hidden: true
   },
   {
     path: '/401',
-    component: () => import('@/views/error-page/401'),
+    component: () => import(/* webpackChunkName: "401" */'@/views/error-page/401'),
     hidden: true
   },
   other

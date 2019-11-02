@@ -2,12 +2,6 @@
   <div class="login-container">
     <canvas class="canvas"></canvas>
     <div
-      :model="loginForm"
-      :rules="loginRules"
-      autocomplete="on"
-      class="login-form"
-      label-position="left"
-      ref="loginForm"
     >
       <div class="title-container">
         <h3 class="title">Login Form</h3>
@@ -59,7 +53,11 @@
           ref="username"
           required
           right-icon="question-o"
-          v-model="loginForm.username"
+          v-model="$v.loginForm.username.$model"
+          :error="$v.loginForm.username.$error"
+          :error-message="!$v.loginForm.username.required?
+          '请输入用户名':!($v.loginForm.username.minLength || $v.loginForm.username.maxLength)?
+          '长度需在5-20之间':''"
         >
           <template slot="left-icon">
             <svg-icon icon-class="user" />
@@ -71,12 +69,15 @@
           :type="passwordType"
           @blur="capsTooltip = false"
           @keyup.enter.native="handleLogin"
-          @keyup.native="checkCapslock"
           label="密码"
           placeholder="请输入密码"
           ref="password"
           required
-          v-model="loginForm.password"
+          v-model="$v.loginForm.password.$model"
+          :error="$v.loginForm.password.$error"
+          :error-message="!$v.loginForm.password.required?
+          '请输入密码':!($v.loginForm.password.minLength && $v.loginForm.password.maxLength)?
+          '长度需在5-20之间':''"
         >
           <template slot="left-icon">
             <svg-icon icon-class="password" />
@@ -92,6 +93,7 @@
       </van-cell-group>
       <div class="login-button">
         <van-button
+          :disabled="$v.$invalid"
           :loading="loading"
           @click.prevent="handleLogin"
           block
@@ -119,35 +121,20 @@
 
 <script>
 
-import { validUsername } from '@/utils/validate'
+import {
+  required,
+  minLength,
+  maxLength } from 'vuelidate/lib/validators'
 // import SocialSign from './components/SocialSignin'
 
 export default {
   name: 'Login',
   // components: { SocialSign },
   data () {
-    const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
-      } else {
-        callback()
-      }
-    }
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
-      } else {
-        callback()
-      }
-    }
     return {
       loginForm: {
         username: 'admin',
         password: '111111'
-      },
-      loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       passwordType: 'password',
       capsTooltip: false,
@@ -155,6 +142,20 @@ export default {
       showDialog: false,
       redirect: undefined,
       otherQuery: {}
+    }
+  },
+  validations: {
+    loginForm: {
+      username: {
+        required,
+        minLength: minLength(5),
+        maxLength: maxLength(20)
+      },
+      password: {
+        required,
+        minLength: minLength(5),
+        maxLength: maxLength(20)
+      }
     }
   },
   watch: {
@@ -190,18 +191,18 @@ export default {
     // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
-    checkCapslock ({ shiftKey, key } = {}) {
-      if (key && key.length === 1) {
-        if (shiftKey && (key >= 'a' && key <= 'z') || !shiftKey && (key >= 'A' && key <= 'Z')) {
-          this.capsTooltip = true
-        } else {
-          this.capsTooltip = false
-        }
-      }
-      if (key === 'CapsLock' && this.capsTooltip === true) {
-        this.capsTooltip = false
-      }
-    },
+    // checkCapslock ({ shiftKey, key } = {}) {
+    //   if (key && key.length === 1) {
+    //     if (shiftKey && (key >= 'a' && key <= 'z') || !shiftKey && (key >= 'A' && key <= 'Z')) {
+    //       this.capsTooltip = true
+    //     } else {
+    //       this.capsTooltip = false
+    //     }
+    //   }
+    //   if (key === 'CapsLock' && this.capsTooltip === true) {
+    //     this.capsTooltip = false
+    //   }
+    // },
     showPwd () {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -213,13 +214,22 @@ export default {
       })
     },
     handleLogin () {
+      // console.log('submit!')
+      // this.$v.$touch()
+      // if (this.$v.$invalid) {
+      //   // this.submitStatus = 'ERROR'
+      //   this.$toast('请检查表单填写情况')
+      //   return
+      // }
       this.loading = true
       this.$store.dispatch('user/login', this.loginForm)
         .then(() => {
           this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
           this.loading = false
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err)
+          this.$toast(err.message)
           this.loading = false
         })
     },
@@ -261,7 +271,7 @@ export default {
   position: relative;
   height: 100vh;
   overflow: hidden;
-  background: #000000;
+  background: #ffffff;
 }
 
 .login-form {
@@ -283,7 +293,6 @@ export default {
 
 .title {
   text-align: center;
-  color: #ffffff;
   font-size: 40px;
 }
 </style>

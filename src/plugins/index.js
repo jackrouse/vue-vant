@@ -9,7 +9,10 @@ import {
   Cell,
   Field,
   Button,
-  Toast
+  Toast,
+  List,
+  PullRefresh,
+  Skeleton
 } from 'vant'
 
 Vue.use(NavBar)
@@ -22,3 +25,6 @@ Vue.use(Col)
 Vue.use(Field)
 Vue.use(Button)
 Vue.use(Toast)
+Vue.use(List)
+Vue.use(PullRefresh)
+Vue.use(Skeleton)

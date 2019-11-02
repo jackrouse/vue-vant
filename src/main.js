@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
 import FastClick from 'fastclick'
+import Vuelidate from 'vuelidate'
 import './registerServiceWorker'
 import './plugins/index'
 import vueFeedback from 'vue-feedback'
@@ -38,6 +39,7 @@ const defaultSettings = {
 FastClick.attach(document.body)
 // Vue.use(Vant)
 Vue.use(vueFeedback)
+Vue.use(Vuelidate)
 
 if (process.env.NODE_ENV === 'development' && defaultSettings.vconsole) {
   const VConsole = require('vconsole')

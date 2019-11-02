@@ -35,14 +35,24 @@ export default [
       // mock error
       if (!token) {
         return {
+          rel: false,
           code: 60204,
-          message: 'Account and password are incorrect.'
+          message: '账号或密码错误'
         }
       }
 
-      return {
-        code: 20000,
-        data: token
+      if (config.body.password === '111111') {
+        return {
+          rel: true,
+          code: 20000,
+          data: token
+        }
+      } else {
+        return {
+          rel: false,
+          code: 20000,
+          message: '账号或密码错误'
+        }
       }
     }
   },
