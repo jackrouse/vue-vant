@@ -29,4 +29,5 @@ yarn run lint
 ### Customize configuration
 哈哈
 rebase test
+test
 See [Configuration Reference](https://cli.vuejs.org/config/).
