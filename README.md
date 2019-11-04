@@ -32,4 +32,5 @@ rebase test
 test
 test123
 test12345
+test123456
 See [Configuration Reference](https://cli.vuejs.org/config/).
