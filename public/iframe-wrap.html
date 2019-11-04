@@ -6,6 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>iframe-wrap,解决vw布局在pc上显示过大的问题</title>
   <style>
+    *{
+      margin: 0;
+      padding:0;
+    }
     html,body{
       margin: 0;
       padding: 0;
@@ -23,11 +27,56 @@
       border-radius: 2vmin;
       background: #ffffff;
     }
+    #input{
+      outline: none;
+      border: 0;
+      width: 300px;
+      height: 40px;
+      vertical-align: top;
+    }
+
+    #button{
+      height: 40px;
+      width:60px;
+      border: 0;
+      outline: none;
+      vertical-align: top;
+      cursor: pointer;
+      background: #4b9aff;
+      color: #ffffff;
+    }
+    #button:hover{
+      background: #1e7dfa;
+    }
   </style>
 </head>
 <body>
 
   <iframe id="iframe" src="/" frameborder="0"></iframe>
-
+  <input id="input" onkeydown="keydown()" type="text" value="">
+  <button id="button" onclick="navigatorTo()">跳转</button>
 </body>
+<script>
+  var child = document.getElementById('iframe').contentWindow
+  var path = window.location.origin + '/#'
+  console.log(child)
+
+  var getChildUrl = function(to){
+    var url = path + to.fullPath
+    document.getElementById("input").value = url
+  }
+
+  var navigatorTo = function(){
+    document.getElementById('iframe').src =  document.getElementById("input").value || '/'
+  }
+
+  var keydown = function(e){
+    var event = e || window.event 
+    if(event.keyCode == "13")    
+    {
+      console.log(e)
+      navigatorTo()
+    }
+  }
+</script>
 </html>

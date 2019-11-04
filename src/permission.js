@@ -11,6 +11,9 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
+  // iframe 嵌套跳转
+  // window.parent && window.parent.getChildUrl && window.parent.getChildUrl(to)
+
   // start progress bar
   NProgress.start()
 
