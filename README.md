@@ -31,4 +31,5 @@ yarn run lint
 rebase test
 test
 test123
+test12345
 See [Configuration Reference](https://cli.vuejs.org/config/).
