@@ -1,6 +1,16 @@
 <template>
   <div>
-    othera
+    <van-nav-bar
+      @click-left="$store.commit('app/toggleSlideMenu')"
+      title="othera"
+    >
+      <van-icon
+        name="wap-nav"
+        size="2em"
+        slot="left"
+      />
+    </van-nav-bar>
+
     <div class="banner-wrapper">
       <slide-banner ref="bannerslide" :interval="5000">
         <div class="slide-item page1">page 1</div>

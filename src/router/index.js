@@ -4,6 +4,12 @@ import store from '@/store'
 import Layout from '@/views/Layout/index.vue'
 // import Dashboard from '@/views/Dashboard.vue'
 import other from './modules/other'
+
+// const routerPush = Router.prototype.push
+// Router.prototype.push = function push (location) {
+//   return routerPush.call(this, location).catch(error => error)
+// }
+
 Vue.use(Router)
 
 /**

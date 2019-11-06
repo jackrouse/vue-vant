@@ -10,17 +10,7 @@
         slot="left"
       />
     </van-nav-bar>
-    <van-popup
-      :style="{ height: '100%',width:'70%'}"
-      position="left"
-      v-model="show"
-    >
-      <trees
-        :data="treeData"
-        :treeProps="propsxxx"
-        class="menu-container"
-      ></trees>
-    </van-popup>
+
     <div class="content-wrap">
       <router-link to="/about">去详情</router-link>
       <svg-icon
@@ -38,7 +28,13 @@
       <div class="now-value">
         <span>当前数值{{$store.state.test.number}}</span>
         <div>
+          <!-- <router-link :to="item.path" v-for="(item,index) in $store.state.permission.routes" :key="index">
+            {{item.path}}
+          </router-link> -->
+
           <van-button
+            v-if="inThisPage"
+            v-clickoutside="clickoutside"
             :loading="loading"
             @click="add"
             size="small"
@@ -242,35 +238,43 @@
 
 <script>
 // @ is an alias to /src
+import initKeepAlive from '@/mixins/initKeepAlive'
+import clickoutside from '@/utils/clickoutside'
 import { mapActions, mapMutations, mapState } from 'vuex' // createNamespacedHelpers
-import trees from '@/components/tree'
+// import trees from '@/components/tree'
 import { menu } from '@/api/menu.mock.js'
 export default {
   name: 'Dashboard',
+  mixins: [initKeepAlive],
   data () {
     return {
       value: 1,
-      show: false,
+      // show: false,
       propsxxx: {
         children: 'children',
-        label: 'title',
+        label: 'path',
         itemPaddingLeft: 4,
         unit: 'vw'
       },
       treeData: menu
     }
   },
+  directives: {
+    clickoutside
+  },
   components: {
-    trees
+    // trees
   },
   computed: {
     ...mapState({
       loading: state => state['@@loading'].effects['test/onePlusAsync']
+      // show: state => state.app.showMenu
     })
   },
   methods: {
     onClickLeft () {
-      this.show = true
+      // this.show = true
+      this.$store.commit('app/toggleSlideMenu')
     },
     add () {
       this.onePlusAsync(this.value)
@@ -287,7 +291,10 @@ export default {
     }),
     ...mapMutations({
       onePlus: 'test/onePlus'
-    })
+    }),
+    clickoutside () {
+      this.$toast('outsideclick')
+    }
   },
   created () {
     // alert(12334)

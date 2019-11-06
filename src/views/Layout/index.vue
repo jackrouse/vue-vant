@@ -1,5 +1,18 @@
 <template>
   <div class="layout">
+    <van-popup
+      :style="{ height: '100%',width:'70%'}"
+      position="left"
+      :lazy-render="false"
+      v-model="show"
+    >
+      <trees
+        v-if="show"
+        :data="$store.state.permission.routes"
+        :treeProps="propsxxx"
+        class="menu-container"
+      ></trees>
+    </van-popup>
     <transition :name="transitionName">
       <keep-alive exclude="redirect,login">
         <router-view class="router" :key="key"/>
@@ -10,13 +23,34 @@
 
 <script>
 // @ is an alias to /src
+import trees from '@/components/tree'
+
 export default {
   data () {
     return {
+      propsxxx: {
+        children: 'children',
+        label: 'path',
+        itemPaddingLeft: 4,
+        unit: 'vw'
+      },
+      treeData: []
+
     }
   },
   name: 'Layout',
   computed: {
+    show: {
+      get () {
+        return this.$store.state.app.showMenu
+      },
+      set (flag) {
+        if (flag === this.$store.state.app.showMenu) {
+          return
+        }
+        this.$store.commit('app/toggleSlideMenu')
+      }
+    },
     key () {
       return this.$route.path
     },
@@ -25,6 +59,7 @@ export default {
     }
   },
   components: {
+    trees
   },
   methods: {
   },
