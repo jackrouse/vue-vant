@@ -56,7 +56,7 @@
           v-model="$v.loginForm.username.$model"
           :error="$v.loginForm.username.$error"
           :error-message="!$v.loginForm.username.required?
-          '请输入用户名':!($v.loginForm.username.minLength || $v.loginForm.username.maxLength)?
+          '请输入用户名':!($v.loginForm.username.minLength && $v.loginForm.username.maxLength)?
           '长度需在5-20之间':''"
         >
           <template slot="left-icon">
