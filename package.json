@@ -8,6 +8,7 @@
     "build:stage": "vue-cli-service build --mode staging",
     "lint": "vue-cli-service lint",
     "preview": "node build/index.js --preview",
+    "report": "node build/index.js --preview --report",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
     "new": "plop"
   },
