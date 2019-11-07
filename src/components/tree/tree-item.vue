@@ -13,13 +13,14 @@
               <tree-item v-for="(item, index) in data[treeProps.children]" :data="item" :key="index" :treeProps="treeProps" ></tree-item>
           </ul> -->
           <ul class="tree-list-sub" v-show="isOpen" v-if="hasChild">
-              <tree-item v-for="(item, index) in data[treeProps.children]" :data="item" :key="index" :treeProps="treeProps" ></tree-item>
+              <tree-item v-for="(item, index) in data[treeProps.children]" :data="item" :base-path="resolvePath(item.path)" :key="index" :treeProps="treeProps" ></tree-item>
           </ul>
         </collapse-transition>
     </li>
 </template>
 
 <script>
+import path from 'path'
 import collapseTransition from '../collapse-transition/index'
 export default {
   name: 'TreeItem', // 递归组件必须有name
@@ -31,6 +32,9 @@ export default {
       type: [Object, Array], // 多个可能的类型
       required: true
 
+    },
+    basePath: {
+      type: String
     },
     // label、children 默认值
     treeProps: {
@@ -80,6 +84,13 @@ export default {
         this.isOpen = !this.isOpen
       } else {
         // this.isActive = true
+        console.log(this.data)
+        this.$store.commit('app/toggleSlideMenu')
+        this.$router.push(this.basePath)
+        // this.dispatch('TreeList', 'menu-open', this)
+
+        // console.log(this.basePath)
+        // console.log(this.data.path)
       }
     },
     close () {
@@ -87,6 +98,24 @@ export default {
     },
     open () {
       this.isOpen = true
+    },
+    resolvePath (routePath) {
+      return path.resolve(this.basePath, routePath)
+    },
+    setMenuActive () {
+      let parent = this.$parent
+      this.isActive = this.$route.fullPath === this.basePath
+      while (parent && parent.$options.componentName !== 'TreeList') {
+        if (parent.$options.componentName === 'TreeItem') {
+          if (this.isActive) {
+            parent.open()
+          } else {
+          // parent.close()
+          }
+          parent = parent.$parent
+        }
+      }
+      // this.dispatch('TreeList', 'menu-open', this)
     }
     // silibingsClose () {
     //   let parent = this.$parent
@@ -100,19 +129,8 @@ export default {
     // }
   },
   created () {
+    this.setMenuActive()
     // debugger
-    let parent = this.$parent
-    this.isActive = this.$route.meta.name === this.data.title
-    while (parent && parent.$options.componentName !== 'TreeList') {
-      if (parent.$options.componentName === 'TreeItem') {
-        if (this.isActive) {
-          parent.open()
-        } else {
-          // parent.close()
-        }
-        parent = parent.$parent
-      }
-    }
   },
   mounted () {
     console.log()

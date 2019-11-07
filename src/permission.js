@@ -76,3 +76,7 @@ router.afterEach(() => {
   // finish progress bar
   NProgress.done()
 })
+
+router.onError((e) => {
+  console.log(e)
+})

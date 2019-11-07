@@ -4,6 +4,12 @@ import store from '@/store'
 import Layout from '@/views/Layout/index.vue'
 // import Dashboard from '@/views/Dashboard.vue'
 import other from './modules/other'
+
+// const routerPush = Router.prototype.push
+// Router.prototype.push = function push (location) {
+//   return routerPush.call(this, location).catch(error => error)
+// }
+
 Vue.use(Router)
 
 /**
@@ -74,6 +80,15 @@ export const constantRoutes = [
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */'@/views/About/index'),
         meta: { title: '关于' }
+      },
+      {
+        path: 'feedback',
+        name: 'feedback',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "about" */'@/views/feedback/index'),
+        meta: { title: '反馈' }
       }
     ]
   },
