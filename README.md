@@ -34,4 +34,5 @@ test123
 test12345
 test123456
 test1234567
+test12345678
 See [Configuration Reference](https://cli.vuejs.org/config/).
