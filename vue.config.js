@@ -73,6 +73,7 @@ module.exports = {
       //   }
       // },
       sass: {
+        implementation: require('sass'),
         data: '@import "@/styles/_mixin.scss";@import "@/styles/_variables.scss";' // 全局引入
       }
     }
